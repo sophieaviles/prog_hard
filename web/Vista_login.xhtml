@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Programacion de Hardware (LOGIN)</title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anton"/>
+        <style>
+            h1  {
+                font-family: 'Anton', sans-serif;
+                font-size: 48px;
+                }
+        </style>
+    </h:head>
+    <h:body style=" background-color:#AED6F1">
+        <h:form id="form1">
+          
+             
+            <div class="container">  
+                <div class="div-img hidden" align="center">
+                    <h1><font size="15" face="MS Sans Serif" color="navy">PROGRAMACION DE HARDWARE</font></h1>
+                    <img class="img" src="Recursos/img/arduino.png" height="200" width="400"/>
+                </div>
+            </div>
+             
+             <div id="dlogin" align="center">    
+                <p:messages autoUpdate="true"/>
+                <p:growl id="growlLogin" showDetail="true" sticky="true" />
+                <p:panel header="LOGIN DE USUARIO" style="margin-top:2px">
+                    <h:panelGrid columns="2" cellpadding="4">
+                        <p:outputLabel id="lbUser">USERNAME:</p:outputLabel><p:inputText value="#{Mlogin.name}" id="txtuser" required="true"/>             
+                        <p:outputLabel id="lblpass">PASSWORD:</p:outputLabel><p:password value="#{Mlogin.pass}" id="txtpass" required="true" />
+                    </h:panelGrid>    
+                    <p:separator/>
+                    <h:panelGrid columns="2" cellpadding="2">             
+                        <p:commandButton icon="ui-icon-key" value="INGRESAR" actionListener="#{clogin.login(Mlogin.name,Mlogin.pass)}"  style="margin-right:20px;"/>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

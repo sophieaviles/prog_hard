@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Programacion de Hardware (ADMIN)</title>
+    </h:head>
+    <h:body style=" background-color:#AED6F1">
+        <h:form id="form1">
+            <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Salir" outcome="Vista_login.xhtml" icon="ui-icon-closethick">
+                <f:param name="i" value="0" />
+            </p:menuitem>
+            </p:tabMenu>
+            <p:panel id="panel12" header="Registro de Base de Datos">
+                
+                <p:messages autoUpdate="false" severity="info" />
+                <p:growl id="growlBorrar" sticky="true" showDetail="true" life="1000" />
+                
+                <p:panel>
+                    <h:outputLabel for="export">Exportar:</h:outputLabel>
+                    <h:commandLink>
+                            <h:graphicImage style="vertical-align: middle" url="Recursos/img/appbar.office.excel.png" />
+                            <p:dataExporter type="xls" target="dataTableRegistro" fileName="ExcelDatos" pageOnly="true"></p:dataExporter>
+                    </h:commandLink>
+                </p:panel>
+                
+                <p:dataTable id="dataTableRegistro" var="dato" value="#{dataFillTable.datosF}" rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" widgetVar="datainfo">
+                   
+                    <!--<p:column id="column1" headerText="ID" style="align-content: center" filterBy="#{dato.id_dato}" filterMatchMode="exact">
+                        <h:outputText value="#{dato.id_dato}" />
+                    </p:column>-->
+                    
+                    <p:column id="column2" headerText="HUMEDAD" style="align-content: center" filterBy="#{dato.humedad}" filterMatchMode="contains">
+                        <h:outputText value="#{dato.humedad}" />
+                    </p:column>
+                    
+                    <p:column id="column3" headerText="FECHA" style="align-content: center" filterBy="#{dato.fecha}" filterMatchMode="contains">
+                        <h:outputText value="#{dato.fecha}" />
+                    </p:column >
+
+                    <p:column id="column4" headerText="OPCIONES" style="align-content: center" exportable="false">
+                        <p:commandButton value="BORRAR" style="align-items: baseline" actionListener="#{s.delete(dato.id_dato)}" ajax="false" update="@(#form1\\dataTableRegistro),growlBorrar" action="Vista_usuarioEdit.xhtml"/>
+                    </p:column>
+                 
+                </p:dataTable><br/>
+     
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
